@@ -118,7 +118,7 @@ angular.module('AngularGraph', ['uiSlider'])
                             scope.kineticStageObj.attrs.container = id;
                         }
                     }
-                    scope.kineticStageObj.clear();
+                    scope.kineticStageObj.removeChildren();
 
                     for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
                         var data = graphController.datasets[Object.keys(graphController.datasets)[i]].data;
