@@ -1,0 +1,27 @@
+#main-view{
+    width:1800px;
+    height: 800px;
+    background-color: #000000;
+    color: #a9dba9;
+
+
+}
+
+.legend{
+    background: #4f4f4f;
+    border: 1px solid #8f8f8f;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+
+}
+
+.legend>div {
+    height: 25px;
+    width: 100px;
+}
+
+.graph{
+    margin:10px;
+    border: 1px solid  #8f8f8f;
+}
