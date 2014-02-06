@@ -1,7 +1,6 @@
 #main-view{
-    background-color: #000000;
     color: #a9dba9;
-
+    text-align: center;
 
 }
 
@@ -31,4 +30,8 @@
 
 .graph#area-graph div{
     border: 1px solid #8f8f8f
+}
+
+form{
+    text-align: left;
 }
