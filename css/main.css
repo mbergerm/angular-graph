@@ -1,6 +1,4 @@
 #main-view{
-    width:1800px;
-    height: 800px;
     background-color: #000000;
     color: #a9dba9;
 
@@ -24,4 +22,13 @@
 .graph{
     margin:10px;
     border: 1px solid  #8f8f8f;
+}
+.graph#area-graph{
+    margin:10px;
+    border: none;
+
+}
+
+.graph#area-graph div{
+    border: 1px solid #8f8f8f
 }

@@ -94,6 +94,68 @@ angular.module('AngularGraph', ['uiSlider'])
         }
     })
 
+
+    .directive('areaGraph', function(){
+        return {
+            restrict: 'E',
+            require:'^?graph',
+            link: function (scope, element, attrs, graphController) {
+                scope.redraw = function(){
+                    if (!scope.kineticStageObj) {
+                        var id = attrs["id"];
+                        //create random unique id
+                        if (!id) {
+                            id = Math.random().toString(36).substring(7);
+                        }
+                        if (!scope.kineticStageObj) {
+                            scope.kineticStageObj = new Kinetic.Stage({
+                                container: id,
+                                width: attrs.width,
+                                height: attrs.height
+                            });
+                        }
+                        if (!scope.kineticStageObj.container) {
+                            scope.kineticStageObj.attrs.container = id;
+                        }
+                    }
+                    scope.kineticStageObj.clear();
+
+                    for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
+                        var data = graphController.datasets[Object.keys(graphController.datasets)[i]].data;
+                        var color = graphController.datasets[Object.keys(graphController.datasets)[i]].color;
+
+                        var step = attrs.width/data.length;
+
+                        var layer = new Kinetic.Layer();
+                        var points = [0,attrs.height];
+                        for (var j=1; j <= data.length; j++) {
+                            points.push(step*j);
+                            points.push(attrs.height-data[j-1]);
+                        }
+                        points.push(attrs.width, attrs.height);
+                        var area = new Kinetic.Line({
+                            points: points,
+                            fill: color,
+                            stroke: 'black',
+                            strokeWidth: 2,
+                            closed: true
+                        });
+                        layer.add(area);
+                        scope.kineticStageObj.add(layer);
+                    }
+               };
+              
+                scope.$watch(function() {
+                    "use strict";
+                    return graphController.datasets;
+                }, function() {
+                    "use strict";
+                    scope.redraw();
+                }, true);
+            }
+        }
+    })
+
     .directive('legend', function(){
         return {
             restrict: 'E',
