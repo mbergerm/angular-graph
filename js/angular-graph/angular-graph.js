@@ -45,56 +45,6 @@ angular.module('AngularGraph', ['uiSlider'])
     })
 
 
-    .directive('lineGraph', function(){
-        return {
-            restrict: 'E',
-            require:'^?graph',
-            template: '<canvas id="line-graph-canvas" class="{{class}}"></canvas>',
-            replace: true,
-            link: function (scope, element, attrs, graphController) {
-
-                var canvas = document.getElementById('line-graph-canvas');
-                canvas.width=attrs.width;
-                canvas.height=attrs.height;
-                var context = canvas.getContext('2d');
-                context.strokeStyle = '#ff0000';
-                context.lineWidth = 2;
-                var x = 0;
-                var y = 0;
-
-                scope.class=attrs.class;
-                console.log(scope.class);
-                scope.redraw= function() {
-                    context.clearRect(0,0,attrs.width,attrs.height);
-
-                    for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
-                        var data = graphController.datasets[Object.keys(graphController.datasets)[i]].data;
-                        var color = graphController.datasets[Object.keys(graphController.datasets)[i]].color;
-                        context.beginPath();
-                        context.strokeStyle = color;
-                        context.stroke();
-
-                        context.moveTo(0,attrs.height);
-                        for (var j=1; j<=data.length;j++) {
-                            x = j*(attrs.width/data.length);
-                            y = attrs.height-data[j-1];
-                            context.lineTo(x, y);
-                            context.stroke();
-                        }
-                    }
-                };
-                scope.$watch(function() {
-                    "use strict";
-                    return graphController.datasets;
-                }, function() {
-                    "use strict";
-                    scope.redraw();
-                }, true);
-            }
-        }
-    })
-
-
     .directive('areaGraph', function(){
         return {
             restrict: 'E',
@@ -132,19 +82,31 @@ angular.module('AngularGraph', ['uiSlider'])
                             points.push(step*j);
                             points.push(attrs.height-data[j-1]);
                         }
-                        points.push(attrs.width, attrs.height);
+                        points.push(attrs.width*100, attrs.height*10);
+                        var fill;
+                        var strokeWidth;
+                        if ((attrs.fill) && (attrs.fill !== false) && (attrs.fill !== 'false')){
+                            fill = color;
+                            strokeWidth = 0;
+                        } else {
+                            if (attrs.strokeWidth)
+                                strokeWidth = attrs.strokeWidth;
+                            else
+                                strokeWidth = 2;
+                        }
                         var area = new Kinetic.Line({
                             points: points,
-                            fill: color,
-                            stroke: 'black',
-                            strokeWidth: 2,
-                            closed: true
+                            fill: fill,
+                            stroke: color,
+                            strokeWidth: strokeWidth,
+                            closed: true,
+                            tension: attrs.tension
                         });
                         layer.add(area);
                         scope.kineticStageObj.add(layer);
                     }
                };
-              
+
                 scope.$watch(function() {
                     "use strict";
                     return graphController.datasets;
@@ -193,7 +155,7 @@ angular.module('AngularGraph', ['uiSlider'])
          $scope.dstest1={};
          $scope.dstest1.value=[150,50,250,30,120,90,200,50,0];
          $scope.ds2={};
-         $scope.ds2.value=[50,900,0];
+         $scope.ds2.value=[50,90,0];
          $scope.ds3={};
          $scope.ds3.value=[250];
     });
