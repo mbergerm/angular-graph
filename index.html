@@ -10,26 +10,68 @@
     <script src="js/kinetic-v5.0.1.min.js"></script>
 
 </head>
-<body>
-    <div id="main-view" ng-controller="mainController">
+<body  ng-controller="mainController">
+    <div height="100%">
+    <div id="main-view">
+        <pre>
+            <h1>Controller:</h1>
+            <code>
+    .controller('mainController', function($scope) {
+        "use strict";
+        $scope.dstest1={};
+        $scope.dstest1.value=[150,50,250,30,120,90,200,50,0];
+        $scope.ds2={};
+        $scope.ds2.value=[50,90,0];
+        $scope.ds3={};
+        $scope.ds3.value=[250];
+    });
+            </code>
+
+
+            <h1>HTML:</h1>
+            <code>
+    &lt;graph&gt;
+        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
+        &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
+        &lt;dataset ng-model="ds3" name="d3" color="#aff0af"&gt;&lt;/dataset&gt;
+        &lt;area-graph id="line-graph" width="1000" height="600" class="graph"&gt;&lt;/area-graph&gt;
+        &lt;legend class="legend"&gt;&lt;/legend&gt;
+    &lt;/graph&gt;
+            </code>
+            </pre>
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
             <dataset ng-model="ds3" name="d3" color="#aff0af"></dataset>
-            <line-graph width="1000" height="600" class="graph"></line-graph>
+            <area-graph id="line-graph" width="1000" height="600" class="graph"></area-graph>
             <legend class="legend"></legend>
         </graph>
-        <form>
-            <input type="number" ng-model="dstest1.value[0]">
-            <input type="number" ng-model="ds2.value[1]">
-            <slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider>
-        </form>
+        <pre>
+            <code>
+                <code>
+    &lt;graph&gt;
+        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
+        &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
+        &lt;area-graph id="area-graph" width="1000" height="600" tension="0.25" fill="true" class="graph"&gt;&lt;/area-graph&gt;
+        &lt;legend class="legend"&gt;&lt;/legend&gt;
+    &lt;/graph&gt;
+                </code>
+            </code>
+        </pre>
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
-            <area-graph id="area-graph" width="1000" height="600" class="graph"></area-graph>
+            <area-graph id="area-graph" width="1000" height="600" tension="0.25" class="graph" fill="true"></area-graph>
             <legend class="legend"></legend>
         </graph>
+    </div>
+    <div class="control">
+        <form>
+            <label>dstest1.value[0]<input type="number" ng-model="dstest1.value[0]"></label>
+            <label>ds2.value[1]<input type="number" ng-model="ds2.value[1]"></label><br>
+            <label>dstest1.value[3]<slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider></label>
+        </form>
+    </div>
     </div>
 </body>
 </html>

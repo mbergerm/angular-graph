@@ -1,8 +1,10 @@
 #main-view{
     background-color: #000000;
     color: #a9dba9;
-
-
+    padding: 10px;
+    width: 99%;
+    overflow: scroll;
+    display: inline-flex;
 }
 
 .legend{
@@ -23,6 +25,16 @@
     margin:10px;
     border: 1px solid  #8f8f8f;
 }
+.graph#line-graph{
+    margin:10px;
+    border: none;
+
+}
+
+.graph#line-graph div{
+    border: 1px solid #8f8f8f
+}
+
 .graph#area-graph{
     margin:10px;
     border: none;
@@ -31,4 +43,32 @@
 
 .graph#area-graph div{
     border: 1px solid #8f8f8f
+}
+
+pre{
+    background: rgba(128,128,128,0.5);
+    margin: 10px;
+    padding: 10px;
+    min-width: 980px;
+}
+code{
+    background: #202020;
+    display: block;
+    width: 980px;
+}
+.control{
+    margin-top:20px;
+    padding: 10px;
+    width: 98%;
+    background: rgba(64,64,64,0.5);
+    overflow: hidden;
+}
+graph{
+    display: inline-table;
+}
+label{
+    padding: 5px;
+}
+slider{
+    width: 90% !important;
 }
