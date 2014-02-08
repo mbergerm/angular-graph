@@ -18,20 +18,17 @@
     width: 100px;
 }
 
-.graph{
-    margin:10px;
-    border: 1px solid  #8f8f8f;
-}
-.graph#area-graph{
-    margin:10px;
-    border: none;
-
-}
-
 .graph#area-graph div{
+    border: 1px solid #8f8f8f
+}
+
+.graph#line-graph div{
     border: 1px solid #8f8f8f
 }
 
 form{
     text-align: left;
+}
+graph>div{
+    display:inline-block;
 }

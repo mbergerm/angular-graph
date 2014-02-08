@@ -38,16 +38,21 @@
         <h3>
 <a name="welcome-to-angular-graph" class="anchor" href="#welcome-to-angular-graph"><span class="octicon octicon-link"></span></a>Welcome to Angular Graph</h3>
 
-<p>This Framework will assist you integrating graphs/charts into your angularJS app.</p>
+<p>This Framework will assist you integrating graphs/charts into your angularJS app. Use the inputs to test.</p>
       </section>
     </div>
 
     <div id="main-view" ng-controller="mainController">
+        <form>
+            <input type="number" ng-model="dstest1.value[0]">
+            <input type="number" ng-model="ds2.value[1]">
+            <slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider>
+        </form>
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
             <dataset ng-model="ds3" name="d3" color="#aff0af"></dataset>
-            <line-graph width="1000" height="600" class="graph"></line-graph>
+            <area-graph id="line-graph" width="1000" height="600" class="graph"></area-graph>
             <legend class="legend"></legend>
         </graph>
         <form>
@@ -58,7 +63,7 @@
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
-            <area-graph id="area-graph" width="1000" height="600" class="graph"></area-graph>
+            <area-graph id="area-graph" width="1000" height="600" fill="true" tension="0.25" class="graph"></area-graph>
             <legend class="legend"></legend>
         </graph>
     </div>
