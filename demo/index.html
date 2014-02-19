@@ -4,15 +4,16 @@
     <title>Angular Graph TestApp</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/angular-slider.css">
-    <script src="js/angular-1.2.10/angular-1.2.10/angular.js"></script>
-    <script src="js/angular-graph/angular-graph.js"></script>
-    <script src="js/angular-slider.js"></script>
-    <script src="js/kinetic-v5.0.1.min.js"></script>
+    <script src="../js/angular-1.2.10/angular-1.2.10/angular.js"></script>
+    <script src="../js/angular-graph/angular-graph.js"></script>
+    <script src="../js/angular-slider.js"></script>
+    <script src="../js/kinetic-v5.0.1.min.js"></script>
 
 </head>
 <body  ng-controller="mainController">
     <div height="100%">
     <div id="main-view">
+
         <pre>
             <h1>Controller:</h1>
             <code>
@@ -26,44 +27,46 @@
         $scope.ds3.value=[250];
     });
             </code>
-
-
-            <h1>HTML:</h1>
-            <code>
-    &lt;graph&gt;
-        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds3" name="d3" color="#aff0af"&gt;&lt;/dataset&gt;
-        &lt;area-graph id="line-graph" width="1000" height="600" class="graph"&gt;&lt;/area-graph&gt;
-        &lt;legend class="legend"&gt;&lt;/legend&gt;
-    &lt;/graph&gt;
-            </code>
             </pre>
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
             <dataset ng-model="ds3" name="d3" color="#aff0af"></dataset>
-            <area-graph id="line-graph" width="1000" height="600" class="graph"></area-graph>
+            <area-graph id="line-graph" width="500" height="400" class="graph"></area-graph>
             <legend class="legend"></legend>
         </graph>
         <pre>
+
+
+            <h1>HTML:</h1>
+
             <code>
-                <code>
     &lt;graph&gt;
         &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"&gt;&lt;/dataset&gt;
-        &lt;area-graph id="area-graph" width="1000" height="600" tension="0.25" fill="true" class="graph"&gt;&lt;/area-graph&gt;
+        &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
+        &lt;dataset ng-model="ds3" name="d3" color="#aff0af"&gt;&lt;/dataset&gt;
+        &lt;area-graph id="line-graph" width="500" height="400" class="graph"&gt;&lt;/area-graph&gt;
         &lt;legend class="legend"&gt;&lt;/legend&gt;
     &lt;/graph&gt;
-                </code>
             </code>
         </pre>
         <graph>
             <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
             <dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"></dataset>
-            <area-graph id="area-graph" width="1000" height="600" tension="0.25" class="graph" fill="true"></area-graph>
+            <area-graph id="area-graph" width="500" height="400" tension="0.25" class="graph" fill="true"></area-graph>
             <legend class="legend"></legend>
         </graph>
+        <pre>
+            <code>
+    &lt;graph&gt;
+        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
+        &lt;dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"&gt;&lt;/dataset&gt;
+        &lt;area-graph id="area-graph" width="500" height="400" tension="0.25" fill="true" class="graph"&gt;&lt;/area-graph&gt;
+        &lt;legend class="legend"&gt;&lt;/legend&gt;
+    &lt;/graph&gt;
+            </code>
+        </pre>
+
     </div>
     <div class="control">
         <form>
