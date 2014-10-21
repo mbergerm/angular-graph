@@ -12,69 +12,71 @@
 
 </head>
 <body  ng-controller="mainController" bgcolor="lightgrey">
-    <div height="100%">
-        <div class="control">
-            <h1>use these controls to change some values</h1>
-            <form>
-                <label>dstest1.value[0]<input type="number" ng-model="dstest1.value[0]"></label>
-                <label>ds2.value[1]<input type="number" ng-model="ds2.value[1]"></label><br>
-                <label>dstest1.value[3]<slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider></label>
-            </form>
-        </div>
-    <div id="main-view">
-
+<div height="100%" id="container">
+    <div class="control">
+        <h1>use these controls to change some values and watch the graph updating in realtime</h1>
+        <form>
+            <label>dstest1.value[<select ng-model = "value1" ><option ng-repeat="val in dstest1.value track by $index">{{$index + 1}}</option></select>]<slider floor="0" ceiling="600" ng-model="dstest1.value[value1-1]" /></label>
+            <label>ds2.value[<select ng-model = "value2" ><option ng-repeat="val in ds2.value track by $index">{{$index + 1}}</option></select>]<slider floor="0" ceiling="600" ng-model="ds2.value[value2-1]" /></label><br>
+            <label>ds3.value[<select ng-model = "value3" ><option ng-repeat="val in ds3.value track by $index">{{$index + 1}}</option></select>]<slider ng-model="ds3.value[value3-1]" floor="0" ceiling="600"  ></slider></label>
+        </form>
+    </div>
+    <div  id="main-view">
+        <div>
+            <div>
         <pre>
             <h1>Controller:</h1>
             <code>
-    .controller('mainController', function($scope) {
-        "use strict";
-        $scope.dstest1={value:[150,50,250,30,120,90,200,50,0]};
-        $scope.ds2={value:[50,90,0]};
-        $scope.ds3={value:[250]};
-    });
+                .controller('mainController', function($scope) {
+                "use strict";
+                $scope.dstest1={value:[150,50,250,30,120,90,200,50,0]};
+                $scope.ds2={value:[50,90,0]};
+                $scope.ds3={value:[250]};
+                });
             </code>
             </pre>
-        <graph>
-            <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
-            <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
-            <dataset ng-model="ds3" name="d3" color="#aff0af"></dataset>
-            <area-graph id="line-graph" width="500" height="400" class="graph"></area-graph>
-            <legend class="legend"></legend>
-        </graph>
+                <graph>
+                    <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
+                    <dataset ng-model="ds2" name="d2" color="#ffff00"></dataset>
+                    <dataset ng-model="ds3" name="d3" color="#aff0af"></dataset>
+                    <area-graph id="line-graph" width="500" height="400" class="graph"></area-graph>
+                    <legend class="legend"></legend>
+                </graph>
         <pre>
 
 
             <h1>HTML:</h1>
 
             <code>
-    &lt;graph&gt;
-        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds3" name="d3" color="#aff0af"&gt;&lt;/dataset&gt;
-        &lt;area-graph id="line-graph" width="500" height="400" class="graph"&gt;&lt;/area-graph&gt;
-        &lt;legend class="legend"&gt;&lt;/legend&gt;
-    &lt;/graph&gt;
+                &lt;graph&gt;
+                &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
+                &lt;dataset ng-model="ds2" name="d2" color="#ffff00"&gt;&lt;/dataset&gt;
+                &lt;dataset ng-model="ds3" name="d3" color="#aff0af"&gt;&lt;/dataset&gt;
+                &lt;area-graph id="line-graph" width="500" height="400" class="graph"&gt;&lt;/area-graph&gt;
+                &lt;legend class="legend"&gt;&lt;/legend&gt;
+                &lt;/graph&gt;
             </code>
         </pre>
-        <graph>
-            <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
-            <dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"></dataset>
-            <area-graph id="area-graph" width="500" height="400" tension="0.25" class="graph" fill="true"></area-graph>
-            <legend class="legend"></legend>
-        </graph>
+                <graph>
+                    <dataset ng-model="dstest1" name="d1 Test" color="#ff0000"></dataset>
+                    <dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"></dataset>
+                    <area-graph id="area-graph" width="500" height="400" tension="0.25" class="graph" fill="true"></area-graph>
+                    <legend class="legend"></legend>
+                </graph>
         <pre>
             <code>
-    &lt;graph&gt;
-        &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
-        &lt;dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"&gt;&lt;/dataset&gt;
-        &lt;area-graph id="area-graph" width="500" height="400" tension="0.25" fill="true" class="graph"&gt;&lt;/area-graph&gt;
-        &lt;legend class="legend"&gt;&lt;/legend&gt;
-    &lt;/graph&gt;
+                &lt;graph&gt;
+                &lt;dataset ng-model="dstest1" name="d1 Test" color="#ff0000"&gt;&lt;/dataset&gt;
+                &lt;dataset ng-model="ds2" name="d2" color="rgba(255,255,0,0.5)"&gt;&lt;/dataset&gt;
+                &lt;area-graph id="area-graph" width="500" height="400" tension="0.25" fill="true" class="graph"&gt;&lt;/area-graph&gt;
+                &lt;legend class="legend"&gt;&lt;/legend&gt;
+                &lt;/graph&gt;
             </code>
         </pre>
-
+            </div>
+        </div>
     </div>
+</div>
 
-    </div>
 </body>
 </html>
