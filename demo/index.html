@@ -8,10 +8,19 @@
     <script src="../js/angular-graph/angular-graph.js"></script>
     <script src="../js/angular-slider.js"></script>
     <script src="../js/kinetic-v5.0.1.min.js"></script>
+    <script src="../javascripts/main.js"></script>
 
 </head>
 <body  ng-controller="mainController" bgcolor="lightgrey">
     <div height="100%">
+        <div class="control">
+            <h1>use these controls to change some values</h1>
+            <form>
+                <label>dstest1.value[0]<input type="number" ng-model="dstest1.value[0]"></label>
+                <label>ds2.value[1]<input type="number" ng-model="ds2.value[1]"></label><br>
+                <label>dstest1.value[3]<slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider></label>
+            </form>
+        </div>
     <div id="main-view">
 
         <pre>
@@ -65,14 +74,7 @@
         </pre>
 
     </div>
-    <div class="control">
-        <h1>use these controls to change some values</h1>
-        <form>
-            <label>dstest1.value[0]<input type="number" ng-model="dstest1.value[0]"></label>
-            <label>ds2.value[1]<input type="number" ng-model="ds2.value[1]"></label><br>
-            <label>dstest1.value[3]<slider ng-model="dstest1.value[3]" floor="0" ceiling="600"  ></slider></label>
-        </form>
-    </div>
+
     </div>
 </body>
 </html>
