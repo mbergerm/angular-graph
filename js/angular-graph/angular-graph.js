@@ -70,6 +70,27 @@ angular.module('AngularGraph', ['uiSlider'])
                     }
                     scope.kineticStageObj.removeChildren();
 
+                    function getStrokeWidth() {
+
+                        if ((attrs.fill) && (attrs.fill !== false) && (attrs.fill !== 'false')) {
+                            fill = color;
+                            strokeWidth = 0;
+                        } else {
+                            if (attrs.strokeWidth)
+                                return attrs.strokeWidth;
+                            else
+                                return 2;
+                        }
+                    }
+
+                    function generatePoints(height, data){
+                        var points = [0,height];
+                        for (var j=1; j <= data.length; j++) {
+                            points.push(step*j);
+                            points.push(height-data[j-1]);
+                        }
+                        return points;
+                    }
                     for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
                         var data = graphController.datasets[Object.keys(graphController.datasets)[i]].data;
                         var color = graphController.datasets[Object.keys(graphController.datasets)[i]].color;
@@ -77,23 +98,11 @@ angular.module('AngularGraph', ['uiSlider'])
                         var step = attrs.width/data.length;
 
                         var layer = new Kinetic.Layer();
-                        var points = [0,attrs.height];
-                        for (var j=1; j <= data.length; j++) {
-                            points.push(step*j);
-                            points.push(attrs.height-data[j-1]);
-                        }
+                        var points = generatePoints(attrs.height, data);
+
                         points.push(attrs.width*100, attrs.height*10);
                         var fill;
-                        var strokeWidth;
-                        if ((attrs.fill) && (attrs.fill !== false) && (attrs.fill !== 'false')){
-                            fill = color;
-                            strokeWidth = 0;
-                        } else {
-                            if (attrs.strokeWidth)
-                                strokeWidth = attrs.strokeWidth;
-                            else
-                                strokeWidth = 2;
-                        }
+                        var strokeWidth = getStrokeWidth();
                         var area = new Kinetic.Line({
                             points: points,
                             fill: fill,
