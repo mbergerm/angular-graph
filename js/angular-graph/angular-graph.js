@@ -89,6 +89,10 @@ angular.module('AngularGraph', ['uiSlider'])
                             points.push(step*j);
                             points.push(height-data[j-1]);
                         }
+                        points.push(step*j+1);
+                        points.push(height-data[data.length-1]);
+                        points.push(step*j+1);
+                        points.push(height+1);
                         return points;
                     }
                     for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
@@ -115,6 +119,90 @@ angular.module('AngularGraph', ['uiSlider'])
                         scope.kineticStageObj.add(layer);
                     }
                };
+
+                scope.$watch(function() {
+                    "use strict";
+                    return graphController.datasets;
+                }, function() {
+                    "use strict";
+                    scope.redraw();
+                }, true);
+            }
+        }
+    })
+
+    .directive('barGraph', function(){
+        return {
+            restrict: 'E',
+            require:'^?graph',
+            link: function (scope, element, attrs, graphController) {
+                scope.redraw = function(){
+                    if (!scope.kineticStageObj) {
+                        var id = attrs["id"];
+                        //create random unique id
+                        if (!id) {
+                            id = Math.random().toString(36).substring(7);
+                        }
+                        if (!scope.kineticStageObj) {
+                            scope.kineticStageObj = new Kinetic.Stage({
+                                container: id,
+                                width: attrs.width,
+                                height: attrs.height
+                            });
+                        }
+                        if (!scope.kineticStageObj.container) {
+                            scope.kineticStageObj.attrs.container = id;
+                        }
+                    }
+                    scope.kineticStageObj.removeChildren();
+
+                    function getStrokeWidth() {
+
+                        if ((attrs.fill) && (attrs.fill !== false) && (attrs.fill !== 'false')) {
+                            fill = color;
+                            strokeWidth = 0;
+                        } else {
+                            if (attrs.strokeWidth)
+                                return attrs.strokeWidth;
+                            else
+                                return 2;
+                        }
+                    }
+
+                    function generatePoints(height, data){
+                        var points = [0,height];
+                        for (var j=1; j <= data.length; j++) {
+                            points.push(step*(j-1));
+                            points.push(height-data[j-1]);
+                            points.push(step*j);
+                            points.push(height-data[j-1]);
+                        }
+                        return points;
+                    }
+                    for(var i=0; i<Object.keys(graphController.datasets).length;i++) {
+                        var data = graphController.datasets[Object.keys(graphController.datasets)[i]].data;
+                        var color = graphController.datasets[Object.keys(graphController.datasets)[i]].color;
+
+                        var step = attrs.width/data.length;
+
+                        var layer = new Kinetic.Layer();
+                        var points = generatePoints(attrs.height, data);
+
+                        points.push(attrs.width*100, attrs.height*10);
+                        var fill;
+                        var strokeWidth = getStrokeWidth();
+                        var area = new Kinetic.Line({
+                            points: points,
+                            fill: fill,
+                            stroke: color,
+                            strokeWidth: strokeWidth,
+                            closed: true,
+                            tension: attrs.tension
+                        });
+                        layer.add(area);
+                        scope.kineticStageObj.add(layer);
+                    }
+                };
 
                 scope.$watch(function() {
                     "use strict";
