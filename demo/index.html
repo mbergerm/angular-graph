@@ -15,11 +15,18 @@
 <div height="100%" id="container">
     <div class="control">
         <h1>use these controls to change some values and watch the graph updating in realtime</h1>
-        <form>
-            <label>dstest1.value[<select ng-model = "value1" ><option ng-repeat="val in dstest1.value track by $index">{{$index + 1}}</option></select>]<slider floor="0" ceiling="600" ng-model="dstest1.value[value1-1]" /></label>
-            <label>ds2.value[<select ng-model = "value2" ><option ng-repeat="val in ds2.value track by $index">{{$index + 1}}</option></select>]<slider floor="0" ceiling="600" ng-model="ds2.value[value2-1]" /></label><br>
-            <label>ds3.value[<select ng-model = "value3" ><option ng-repeat="val in ds3.value track by $index">{{$index + 1}}</option></select>]<slider ng-model="ds3.value[value3-1]" floor="0" ceiling="600"  ></slider></label>
-        </form>
+        <div>
+            <label>dstest1.value[<select ng-model = "value1" ><option ng-repeat="val in dstest1.value track by $index">{{$index + 1}}</option></select>]</label>
+            <slider floor="0" ceiling="600" ng-model="dstest1.value[value1-1]" /><br>
+        </div>
+        <div>
+            <label>ds2.value[<select ng-model = "value2" ><option ng-repeat="val in ds2.value track by $index">{{$index + 1}}</option></select>]</label>
+            <slider floor="0" ceiling="600" ng-model="ds2.value[value2-1]" /><br>
+        </div>
+        <div>
+            <label>ds3.value[<select ng-model = "value3" ><option ng-repeat="val in ds3.value track by $index">{{$index + 1}}</option></select>]</label>
+            <slider ng-model="ds3.value[value3-1]" floor="0" ceiling="600" /><br>
+        </div>
     </div>
     <div  id="main-view">
         <div>
