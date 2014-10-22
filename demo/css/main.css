@@ -6,7 +6,7 @@ body{
 #main-view{
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 600px;
+    height: 750px;
 }
 #main-view>div{
     background-color: #000000;
@@ -114,5 +114,8 @@ label{
     padding: 5px;
 }
 slider{
+    float: right;
     width: 90% !important;
+    margin-top: 5px!important;
+    margin-bottom: 5px!important;
 }
